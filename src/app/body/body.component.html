@@ -1,0 +1,11 @@
+<app-check-live></app-check-live>
+
+<body style="margin : 20px;">
+  <h4>Notebooks</h4>
+  <div>
+    <button mat-raised-button (click)="loadNotebooks()">Load Notebooks</button>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <app-notebooks-table [notebooks]="notebooks"></app-notebooks-table>
+  </div>
+</body>
+

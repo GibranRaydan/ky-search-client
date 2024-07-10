@@ -1,0 +1,241 @@
+<div style="margin: 20px;">
+  <table mat-table [dataSource]="notebooks" class="mat-elevation-z8">
+    <mat-spinner *ngIf="loading"></mat-spinner>
+
+    <ng-container matColumnDef="grantor">
+      <th mat-header-cell *matHeaderCellDef> Grantor </th>
+      <td mat-cell *matCellDef="let element"> {{element.grantor}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grantee">
+      <th mat-header-cell *matHeaderCellDef> Grantee </th>
+      <td mat-cell *matCellDef="let element"> {{element.grantee}} </td>
+    </ng-container>
+    <ng-container matColumnDef="kind">
+      <th mat-header-cell *matHeaderCellDef> Kind </th>
+      <td mat-cell *matCellDef="let element"> {{element.kind}} </td>
+    </ng-container>
+    <ng-container matColumnDef="book">
+      <th mat-header-cell *matHeaderCellDef> Book </th>
+      <td mat-cell *matCellDef="let element"> {{element.book}} </td>
+    </ng-container>
+    <ng-container matColumnDef="page">
+      <th mat-header-cell *matHeaderCellDef> Page </th>
+      <td mat-cell *matCellDef="let element"> {{element.page}} </td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>-->
+    <!-- Add more columns as needed -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<!--<div style="margin: 20px; overflow-x: auto; max-width: 1200px;">
+  <table mat-table [dataSource]="notebooks" class="mat-elevation-z8">
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef> Image </th>
+      <td mat-cell *matCellDef="let element"> {{element.image}} </td>
+    </ng-container>
+    <ng-container matColumnDef="filler">
+      <th mat-header-cell *matHeaderCellDef> Filler </th>
+      <td mat-cell *matCellDef="let element"> {{element.filler}} </td>
+    </ng-container>
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef> Code </th>
+      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grantorA">
+      <th mat-header-cell *matHeaderCellDef> Grantor A </th>
+      <td mat-cell *matCellDef="let element"> {{element.grantorA}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grantor">
+      <th mat-header-cell *matHeaderCellDef> Grantor </th>
+      <td mat-cell *matCellDef="let element"> {{element.grantor}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grantorGiven1">
+      <th mat-header-cell *matHeaderCellDef> Grantor Given 1 </th>
+      <td mat-cell *matCellDef="let element"> {{element.grantorGiven1}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grantorGiven2">
+      <th mat-header-cell *matHeaderCellDef> Grantor Given 2 </th>
+      <td mat-cell *matCellDef="let element"> {{element.grantorGiven2}} </td>
+    </ng-container>
+    <ng-container matColumnDef="gorAp">
+      <th mat-header-cell *matHeaderCellDef> Gor Ap </th>
+      <td mat-cell *matCellDef="let element"> {{element.gorAp}} </td>
+    </ng-container>
+    <ng-container matColumnDef="granteeA">
+      <th mat-header-cell *matHeaderCellDef> Grantee A </th>
+      <td mat-cell *matCellDef="let element"> {{element.granteeA}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grantee">
+      <th mat-header-cell *matHeaderCellDef> Grantee </th>
+      <td mat-cell *matCellDef="let element"> {{element.grantee}} </td>
+    </ng-container>
+    <ng-container matColumnDef="granteeGiven1">
+      <th mat-header-cell *matHeaderCellDef> Grantee Given 1 </th>
+      <td mat-cell *matCellDef="let element"> {{element.granteeGiven1}} </td>
+    </ng-container>
+    <ng-container matColumnDef="granteeGiven2">
+      <th mat-header-cell *matHeaderCellDef> Grantee Given 2 </th>
+      <td mat-cell *matCellDef="let element"> {{element.granteeGiven2}} </td>
+    </ng-container>
+    <ng-container matColumnDef="geeAP">
+      <th mat-header-cell *matHeaderCellDef> Gee AP </th>
+      <td mat-cell *matCellDef="let element"> {{element.geeAP}} </td>
+    </ng-container>
+    <ng-container matColumnDef="kind">
+      <th mat-header-cell *matHeaderCellDef> Kind </th>
+      <td mat-cell *matCellDef="let element"> {{element.kind}} </td>
+    </ng-container>
+    <ng-container matColumnDef="book">
+      <th mat-header-cell *matHeaderCellDef> Book </th>
+      <td mat-cell *matCellDef="let element"> {{element.book}} </td>
+    </ng-container>
+    <ng-container matColumnDef="page">
+      <th mat-header-cell *matHeaderCellDef> Page </th>
+      <td mat-cell *matCellDef="let element"> {{element.page}} </td>
+    </ng-container>
+    <ng-container matColumnDef="numberPages">
+      <th mat-header-cell *matHeaderCellDef> Number of Pages </th>
+      <td mat-cell *matCellDef="let element"> {{element.numberPages}} </td>
+    </ng-container>
+    <ng-container matColumnDef="lastPage">
+      <th mat-header-cell *matHeaderCellDef> Last Page </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastPage}} </td>
+    </ng-container>
+    <ng-container matColumnDef="desc">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.desc}} </td>
+    </ng-container>
+    <ng-container matColumnDef="docNo">
+      <th mat-header-cell *matHeaderCellDef> Doc No </th>
+      <td mat-cell *matCellDef="let element"> {{element.docNo}} </td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef> Time </th>
+      <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+    </ng-container>
+    <ng-container matColumnDef="alt">
+      <th mat-header-cell *matHeaderCellDef> Alt </th>
+      <td mat-cell *matCellDef="let element"> {{element.alt}} </td>
+    </ng-container>
+    <ng-container matColumnDef="blank">
+      <th mat-header-cell *matHeaderCellDef> Blank </th>
+      <td mat-cell *matCellDef="let element"> {{element.blank}} </td>
+    </ng-container>
+    <ng-container matColumnDef="money">
+      <th mat-header-cell *matHeaderCellDef> Money </th>
+      <td mat-cell *matCellDef="let element"> {{element.money}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idX1">
+      <th mat-header-cell *matHeaderCellDef> IdX1 </th>
+      <td mat-cell *matCellDef="let element"> {{element.idX1}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idX2">
+      <th mat-header-cell *matHeaderCellDef> IdX2 </th>
+      <td mat-cell *matCellDef="let element"> {{element.idX2}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idX3">
+      <th mat-header-cell *matHeaderCellDef> IdX3 </th>
+      <td mat-cell *matCellDef="let element"> {{element.idX3}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idX4">
+      <th mat-header-cell *matHeaderCellDef> IdX4 </th>
+      <td mat-cell *matCellDef="let element"> {{element.idX4}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idX5">
+      <th mat-header-cell *matHeaderCellDef> IdX5 </th>
+      <td mat-cell *matCellDef="let element"> {{element.idX5}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idX6">
+      <th mat-header-cell *matHeaderCellDef> IdX6 </th>
+      <td mat-cell *matCellDef="let element"> {{element.idX6}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idX7">
+      <th mat-header-cell *matHeaderCellDef> IdX7 </th>
+      <td mat-cell *matCellDef="let element"> {{element.idX7}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idX8">
+      <th mat-header-cell *matHeaderCellDef> IdX8 </th>
+      <td mat-cell *matCellDef="let element"> {{element.idX8}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idX9">
+      <th mat-header-cell *matHeaderCellDef> IdX9 </th>
+      <td mat-cell *matCellDef="let element"> {{element.idX9}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idX10">
+      <th mat-header-cell *matHeaderCellDef> IdX10 </th>
+      <td mat-cell *matCellDef="let element"> {{element.idX10}} </td>
+    </ng-container>
+    <ng-container matColumnDef="recordChanged">
+      <th mat-header-cell *matHeaderCellDef> Record Changed </th>
+      <td mat-cell *matCellDef="let element"> {{element.recordChanged}} </td>
+    </ng-container>
+    <ng-container matColumnDef="refKind">
+      <th mat-header-cell *matHeaderCellDef> Ref Kind </th>
+      <td mat-cell *matCellDef="let element"> {{element.refKind}} </td>
+    </ng-container>
+    <ng-container matColumnDef="refBook">
+      <th mat-header-cell *matHeaderCellDef> Ref Book </th>
+      <td mat-cell *matCellDef="let element"> {{element.refBook}} </td>
+    </ng-container>
+    <ng-container matColumnDef="refPage">
+      <th mat-header-cell *matHeaderCellDef> Ref Page </th>
+      <td mat-cell *matCellDef="let element"> {{element.refPage}} </td>
+    </ng-container>
+    <ng-container matColumnDef="isRefParent">
+      <th mat-header-cell *matHeaderCellDef> Is Ref Parent </th>
+      <td mat-cell *matCellDef="let element"> {{element.isRefParent}} </td>
+    </ng-container>
+    <ng-container matColumnDef="isORFirstParty">
+      <th mat-header-cell *matHeaderCellDef> Is OR First Party </th>
+      <td mat-cell *matCellDef="let element"> {{element.isORFirstParty}} </td>
+    </ng-container>
+    <ng-container matColumnDef="isEEFirstParty">
+      <th mat-header-cell *matHeaderCellDef> Is EE First Party </th>
+      <td mat-cell *matCellDef="let element"> {{element.isEEFirstParty}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grantorStripped">
+      <th mat-header-cell *matHeaderCellDef> Grantor Stripped </th>
+      <td mat-cell *matCellDef="let element"> {{element.grantorStripped}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grantorGiven1Stripped">
+      <th mat-header-cell *matHeaderCellDef> Grantor Given 1 Stripped </th>
+      <td mat-cell *matCellDef="let element"> {{element.grantorGiven1Stripped}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grantorGiven2Stripped">
+      <th mat-header-cell *matHeaderCellDef> Grantor Given 2 Stripped </th>
+      <td mat-cell *matCellDef="let element"> {{element.grantorGiven2Stripped}} </td>
+    </ng-container>
+    <ng-container matColumnDef="granteeStripped">
+      <th mat-header-cell *matHeaderCellDef> Grantee Stripped </th>
+      <td mat-cell *matCellDef="let element"> {{element.granteeStripped}} </td>
+    </ng-container>
+    <ng-container matColumnDef="granteeGiven1Stripped">
+      <th mat-header-cell *matHeaderCellDef> Grantee Given 1 Stripped </th>
+      <td mat-cell *matCellDef="let element"> {{element.granteeGiven1Stripped}} </td>
+    </ng-container>
+    <ng-container matColumnDef="granteeGiven2Stripped">
+      <th mat-header-cell *matHeaderCellDef> Grantee Given 2 Stripped </th>
+      <td mat-cell *matCellDef="let element"> {{element.granteeGiven2Stripped}} </td>
+    </ng-container>
+    <ng-container matColumnDef="primKey">
+      <th mat-header-cell *matHeaderCellDef> Prim Key </th>
+      <td mat-cell *matCellDef="let element"> {{element.primKey}} </td>
+    </ng-container>
+    <ng-container matColumnDef="docNumber">
+      <th mat-header-cell *matHeaderCellDef> Doc Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.docNumber}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>-->
