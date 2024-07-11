@@ -1,0 +1,13 @@
+/*.header-tab {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-tab-label {
+  flex: 1;
+  text-align: center;
+}
+
+.mat-tab-group {
+  width: 100%;
+*/
