@@ -9,6 +9,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
 
 bootstrapApplication(AppComponent, {
-  providers: [provideHttpClient(), provideAnimationsAsync(), importProvidersFrom(MatTableModule, MatButtonModule, MatProgressSpinnerModule, BrowserAnimationsModule)]
+  providers: [
+    provideHttpClient(),
+    provideAnimationsAsync(),
+    importProvidersFrom(
+      MatTableModule,
+      MatButtonModule,
+      MatProgressSpinnerModule,
+      BrowserAnimationsModule
+    )]
 })
   .catch(err => console.error(err));

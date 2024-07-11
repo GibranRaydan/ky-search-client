@@ -1,7 +1,11 @@
-.table-container {
-  margin: 20px;
+.notebooks-count-input {
+  margin-right: 5px;
+  min-width: 150px;
+  max-width: 300px;
+  max-height: 70px; 
+  width: 100%;
 }
 
-table {
-  width: 100%;
+.load-notebooks-spinner {
+    margin-top: 20px;
 }

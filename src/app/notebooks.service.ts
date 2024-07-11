@@ -10,7 +10,7 @@ export class NotebooksService {
 
   constructor(private http: HttpClient) { }
 
-  getNotebooks(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getNotebooks(count: number): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}?count=${count}`);
   }
 }
