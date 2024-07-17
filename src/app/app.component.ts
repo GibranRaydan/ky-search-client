@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,8 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     HeaderComponent,
     BodyComponent,
-    FooterComponent],
+    FooterComponent,
+    MatSnackBarModule],
 
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
