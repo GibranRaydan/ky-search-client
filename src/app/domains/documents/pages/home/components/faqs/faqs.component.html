@@ -1,0 +1,27 @@
+<section class="leading-relaxed max-w-screen-xl mt-12 mx-auto px-4 md:px-8">
+  <div class="space-y-3 text-center">
+    <div class="text-3xl text-gray-800 font-semibold">
+      FAQ (Frequently Asked Questions)
+    </div>
+    <div class="text-gray-600 max-w-lg mx-auto text-lg">
+      Answered all frequently asked questions, Still confused? feel free to contact us.
+    </div>
+  </div>
+
+  <div class="mt-14 max-w-2xl mx-auto pb-20">
+    <mat-accordion class="example-headers-align" multi>
+      @for (faqElement of faqsList(); track faqElement.id ){
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{faqElement.question}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>
+            {{faqElement.answer}}
+          </p>
+        </mat-expansion-panel>
+      }
+    </mat-accordion>
+  </div>
+</section>
