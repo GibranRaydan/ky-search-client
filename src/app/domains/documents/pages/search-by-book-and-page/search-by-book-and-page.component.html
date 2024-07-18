@@ -1,1 +1,23 @@
-<p>search-by-book-and-page works!</p>
+
+<div style="margin: 20px;">
+  <h4>Search Documents by Book and Page</h4>
+
+  <div>
+    <mat-form-field class="input-field book-input" appearance="fill">
+      <mat-label>Book</mat-label>
+      <input title="book" matInput type="number" [(ngModel)]="book" name="book">
+    </mat-form-field>
+
+    <mat-form-field class="input-field page-input" appearance="fill">
+      <mat-label>Page</mat-label>
+      <input title="page" matInput type="number" [(ngModel)]="page" name="page">
+    </mat-form-field>
+
+    <br />
+    <button mat-raised-button (click)="searchDocuments()" [disabled]="loading">Search Documents</button>
+
+    <mat-progress-bar mode="indeterminate" class="load-documents-spinner" *ngIf="loading"></mat-progress-bar>
+    <app-notebooks-table *ngIf="!loading && notebooks.length > 0" [notebooks]="notebooks" [loading]="loading"></app-notebooks-table>
+    <div *ngIf="!loading && noResultsFound">No results found for that book and page.</div>
+  </div>
+</div>

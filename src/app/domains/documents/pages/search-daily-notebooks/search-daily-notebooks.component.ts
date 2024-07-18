@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
@@ -65,30 +64,4 @@ export class SearchDailyNotebooksComponent {
       }
     );
   }
-
-  //downloadPdf(element: any): void {
-  //  this.notebooksService.getPdfDocument(element.book, element.page).subscribe(response => {
-  //    this.downloadFile(response, 'application/pdf');
-  //  }, error => {
-  //    this.snackBar.open(`Error downloading PDF: ${error}`, 'Close', { duration: 3000 });
-  //  });
-  //}
-
-  //downloadTiff(element: any): void {
-  //  this.notebooksService.getTifDocument(element.book, element.page).subscribe(response => {
-  //    this.downloadFile(response, 'image/tiff');
-  //  }, error => {
-  //    this.snackBar.open(`Error downloading TIFF: ${error}`, 'Close', { duration: 3000 });
-  //  });
-  //}
-
-  //private downloadFile(data: Blob, type: string): void {
-  //  const blob = new Blob([data], { type });
-  //  const url = window.URL.createObjectURL(blob);
-  //  const link = document.createElement('a');
-  //  link.href = url;
-  //  link.download = `document.${type.split('/')[1]}`;
-  //  link.click();
-  //  window.URL.revokeObjectURL(url);
-  //}
 }
