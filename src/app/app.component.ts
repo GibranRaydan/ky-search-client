@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from './domains/shared/components/header/header.component';
-import { HomeComponent } from './domains/documents/pages/home/home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { RouterOutlet } from '@angular/router';
@@ -13,7 +12,6 @@ import { RouterOutlet } from '@angular/router';
     HeaderComponent,
     MatSnackBarModule,
     RouterOutlet,
-    HomeComponent,
   ],
   template: `
     <app-header></app-header>
