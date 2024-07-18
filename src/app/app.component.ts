@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from './header/header.component';
-import { BodyComponent } from './body/body.component';
-import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './domains/shared/components/header/header.component';
+import { HomeComponent } from './domains/documents/pages/home/home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { RouterOutlet } from '@angular/router';
 
 
 @Component({
@@ -10,12 +11,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   standalone: true,
   imports: [
     HeaderComponent,
-    BodyComponent,
-    FooterComponent,
-    MatSnackBarModule],
-
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    MatSnackBarModule,
+    RouterOutlet,
+    HomeComponent,
+  ],
+  template: `
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  `,
 })
 export class AppComponent implements OnInit {
   title = 'Notebook List';
@@ -23,5 +26,4 @@ export class AppComponent implements OnInit {
   loading = false;
 
   ngOnInit(): void {}
-
 }

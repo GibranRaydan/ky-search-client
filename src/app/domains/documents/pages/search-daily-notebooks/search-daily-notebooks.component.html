@@ -1,4 +1,3 @@
-
 <div style="margin: 20px;">
   <app-check-live></app-check-live>
 
@@ -7,7 +6,7 @@
   <div>
     <mat-form-field class="notebooks-count-input" appearance="fill">
       <mat-label>Number of documents</mat-label>
-      <input matInput type="number" [(ngModel)]="count" name="count" #countInput="ngModel" min="1" max="1000">
+      <input title="number of notebooks to list" matInput type="number" [(ngModel)]="count" name="count" #countInput="ngModel" min="1" max="1000">
       <mat-error *ngIf="countInput.errors && (countInput.dirty || countInput.touched)">
         <span *ngIf="countInput.errors?.['min']">Count must be greater than 0.</span>
         <span *ngIf="countInput.errors?.['max']">Count must be less than or equal to 1000.</span>
@@ -15,7 +14,6 @@
     </mat-form-field>
     <br />
     <button mat-raised-button (click)="loadNotebooks()" [disabled]="loading">Load Notebooks</button>
-
 
     <mat-progress-bar mode="indeterminate" class="load-notebooks-spinner" *ngIf="loading"></mat-progress-bar>
     <app-notebooks-table *ngIf="!loading && notebooks.length > 0" [notebooks]="notebooks" [loading]="loading"></app-notebooks-table>
