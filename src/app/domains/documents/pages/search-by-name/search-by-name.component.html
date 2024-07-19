@@ -1,1 +1,33 @@
-<p>search-by-name works!</p>
+<div style="margin: 20px;">
+  <h4>Search Documents by Name</h4>
+
+  <form [formGroup]="searchForm" (ngSubmit)="searchDocuments()">
+
+    <mat-button-toggle-group formControlName="nameType">
+      <mat-button-toggle value="GRANTOR">GRANTOR</mat-button-toggle>
+      <mat-button-toggle value="GRANTEE">GRANTEE</mat-button-toggle>
+      <mat-button-toggle value="BOTH">BOTH</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <br />
+    <mat-form-field class="input-field surname-input" appearance="fill">
+      <mat-label>Surname</mat-label>
+      <input title="surname" matInput formControlName="surname">
+      <mat-error *ngIf="searchForm.get('surname')?.hasError('required')">Surname is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-field given-input" appearance="fill">
+      <mat-label>Given</mat-label>
+      <input title="given" matInput formControlName="given">
+      <mat-error *ngIf="searchForm.get('given')?.hasError('required')">Given name is required for BOTH</mat-error>
+    </mat-form-field>
+
+    <br />
+    <button class="load-documents-button" mat-raised-button type="submit" [disabled]="searchForm.invalid || loading">Search Documents</button>
+    <br />
+    <br />
+    <mat-progress-bar mode="indeterminate" class="load-documents-spinner" *ngIf="loading"></mat-progress-bar>
+    <app-notebooks-table *ngIf="!loading && notebooks.length > 0" [notebooks]="notebooks" [loading]="loading"></app-notebooks-table>
+    <div *ngIf="!loading && noResultsFound">No results found for that search.</div>
+  </form>
+</div>
