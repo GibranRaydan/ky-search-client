@@ -18,6 +18,14 @@ export class NotebooksService {
     );
   }
 
+  getDocumentsByName(surname: string, nameType: string, given: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/search/documents/name`, {
+      params: { surname, nameType, given },
+    }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   getDocumentsByBookAndPage(book: number, page: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/search/documents/book-page`, {
       params: { book, page },
@@ -36,7 +44,7 @@ export class NotebooksService {
 
   getPdfDocument(book: number, page: number): Observable<Blob> {
     return this.http.get(`${this.apiUrl}/search/documents/pdf`, {
-      // params: { book: '2170', page:'1' },
+       //params: { book: '2170', page:'1' },
       params: { book, page },
       responseType: 'blob',
     }).pipe(
