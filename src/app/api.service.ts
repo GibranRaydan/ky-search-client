@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 export interface LiveStatus {
   live: boolean;
@@ -11,7 +12,7 @@ export interface LiveStatus {
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'https://localhost:7087/checklive';
+  private apiUrl = environment.apiUrl + '/checklive';
 
   constructor(private http: HttpClient) { }
 

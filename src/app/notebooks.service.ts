@@ -3,12 +3,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
 import { throwError, Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotebooksService {
-  private apiUrl = 'https://localhost:7087'; // Adjust the URL as needed
+  private apiUrl = environment.apiUrl; // Adjust the URL as needed
 
   constructor(private http: HttpClient) { }
 
