@@ -1,10 +1,27 @@
 <div class="mx-10 my-5">
+
   <app-check-live></app-check-live>
+
   <div class="text-3xl">
     {{ title }}
   </div>
-  <ng-content></ng-content>
-  <div>
-    TABLE
+
+  <div class="py-5">
+    <ng-content></ng-content>
   </div>
+
+  @if(loading){
+    <mat-progress-bar mode="indeterminate" class="load-notebooks-spinner"></mat-progress-bar>
+  }
+
+  <div>
+    @if(!loading && notebooks.length > 0){
+      <app-notebooks-table [notebooks]="notebooks" [loading]="loading"></app-notebooks-table>
+    }
+  </div>
+
+  @if(!loading && noResultsFound){
+    <div>No results found for the selected types.</div>
+  }
+
 </div>

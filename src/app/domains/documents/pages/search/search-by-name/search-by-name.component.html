@@ -1,6 +1,8 @@
-<div style="margin: 20px;">
-  <h4>Search Documents by Name</h4>
-
+<app-search
+  [title]="title"
+  [notebooks]="notebooks"
+  [loading]="loading"
+  [noResultsFound]="noResultsFound">
   <form [formGroup]="searchForm" (ngSubmit)="searchDocuments()">
 
     <mat-button-toggle-group formControlName="nameType">
@@ -22,12 +24,7 @@
       <mat-error *ngIf="searchForm.get('given')?.hasError('required')">Given name is required for BOTH</mat-error>
     </mat-form-field>
 
-    <br />
     <button class="load-documents-button" mat-raised-button type="submit" [disabled]="searchForm.invalid || loading">Search Documents</button>
-    <br />
-    <br />
-    <mat-progress-bar mode="indeterminate" class="load-documents-spinner" *ngIf="loading"></mat-progress-bar>
-    <app-notebooks-table *ngIf="!loading && notebooks.length > 0" [notebooks]="notebooks" [loading]="loading"></app-notebooks-table>
-    <div *ngIf="!loading && noResultsFound">No results found for that search.</div>
+
   </form>
-</div>
+</app-search>

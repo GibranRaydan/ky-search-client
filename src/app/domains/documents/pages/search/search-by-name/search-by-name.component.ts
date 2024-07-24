@@ -1,37 +1,26 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DocumentTableComponent } from '../../../components/document-table/document-table.component';
 import { NotebooksService } from '../../../../../notebooks.service';
+import { searchImports } from '../search.declarations';
 
 @Component({
   selector: 'app-search-by-name',
   standalone: true,
   imports: [
     CommonModule,
-    MatTableModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatSnackBarModule,
     MatButtonToggleModule,
-    DocumentTableComponent,
     ReactiveFormsModule,
+    searchImports
   ],
   templateUrl: './search-by-name.component.html',
   styleUrls: ['./search-by-name.component.css'],
 })
 export class SearchByNameComponent {
+  title = 'Search By Name';
   notebooks: any[] = [];
   displayedColumns: string[] = [];
   loading: boolean = false;
