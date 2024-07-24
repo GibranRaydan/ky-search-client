@@ -17,9 +17,7 @@
               {{faqElement.question}}
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>
-            {{faqElement.answer}}
-          </p>
+          <p [innerHtml]="faqElement.answer"></p>
         </mat-expansion-panel>
       }
     </mat-accordion>

@@ -85,8 +85,7 @@ export class FaqsComponent {
       id: 7,
       question: 'Viewing Images',
       isOpen: false,
-      answer:
-        'To view images on this site you will need a TIFF (an image format) viewer or a PDF viewer. A free TIFF viewer can be downloaded at www.alternatiff.com and a free PDF viewer, Adobe Acrobat Reader, can be downloaded at www.adobe.com.',
+      answer: `To view images on this site you will need a TIFF (an image format) viewer or a PDF viewer. A free TIFF viewer can be downloaded at <a class='text-blue-900 underline' href="http://www.alternatiff.com">www.alternatiff.com</a> and a free PDF viewer, Adobe Acrobat Reader, can be downloaded at <a class='text-blue-900 underline' href="http://www.adobe.com">www.adobe.com</a>.`,
     },
   ]);
 }
