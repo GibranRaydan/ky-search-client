@@ -25,7 +25,6 @@ export class SearchMarriageLicensesComponent {
 
   changeType() {
     let filterTemp = this.searchForm.value.searchType;
-    console.log('changeType', filterTemp);
     this.filter.set(filterTemp);
   }
 
@@ -81,8 +80,4 @@ export class SearchMarriageLicensesComponent {
         }
       );
   }
-
-  // ascending or descending
-  // BRIDE or GROOM
-  // bride surname or gromm surname
 }
