@@ -9,8 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DocumentTableComponent } from './../../components/document-table/document-table.component';
-import { NotebooksService } from '../../../../notebooks.service';
+import { DocumentTableComponent } from '../../../components/document-table/document-table.component';
+import { NotebooksService } from '../../../../../notebooks.service';
 
 @Component({
   selector: 'app-search-by-name',

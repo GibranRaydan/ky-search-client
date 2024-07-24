@@ -10,8 +10,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { DocumentTableComponent } from './../../components/document-table/document-table.component';
-import { NotebooksService } from '../../../../notebooks.service';
+import { DocumentTableComponent } from '../../../components/document-table/document-table.component';
+import { NotebooksService } from '../../../../../notebooks.service';
 
 @Component({
   selector: 'app-search-by-book-and-page',

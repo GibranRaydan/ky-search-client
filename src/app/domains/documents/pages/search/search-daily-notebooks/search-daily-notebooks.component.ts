@@ -1,4 +1,3 @@
-// search-by-book-and-page.component.ts
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
@@ -8,12 +7,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { CheckLiveComponent } from '../../../../shared/components/check-live/check-live.component';
+import { DocumentTableComponent } from '../../../components/document-table/document-table.component';
+import { NotebooksService } from '../../../../../notebooks.service';
 import { FormsModule } from '@angular/forms';
-import { DocumentTableComponent } from './../../components/document-table/document-table.component';
-import { NotebooksService } from '../../../../notebooks.service';
 
 @Component({
-  selector: 'app-search-by-book-and-page',
+  selector: 'app-search-daily-notebooks',
   standalone: true,
   imports: [
     CommonModule,
@@ -24,49 +24,42 @@ import { NotebooksService } from '../../../../notebooks.service';
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    CheckLiveComponent,
     DocumentTableComponent,
     FormsModule,
   ],
-  templateUrl: './search-by-book-and-page.component.html',
-  styleUrls: ['./search-by-book-and-page.component.css'],
+  templateUrl: './search-daily-notebooks.component.html',
+  styleUrls: ['./search-daily-notebooks.component.css'],
 })
-export class SearchByBookAndPageComponent {
+export class SearchDailyNotebooksComponent {
+
   @Input() notebooks: any[] = [];
   @Input() displayedColumns: string[] = [];
   @Input() loading: boolean = false;
-  book?: number;
-  page?: number;
-  noResultsFound = false;
-
+  count?: number;
   constructor(
     private notebooksService: NotebooksService,
     private snackBar: MatSnackBar
-  ) { }
+  ) {}
 
-  searchDocuments(): void {
-    if (this.book === undefined || this.page === undefined) {
-      console.warn('Book and page must be defined.');
+  loadNotebooks(): void {
+    console.log('loadNotebooks');
+    if (this.count !== undefined && (this.count <= 0 || this.count > 10000)) {
+      console.warn('Count must be between 1 and 10000.');
       return;
     }
 
-    this.loading = true;
-    this.noResultsFound = false;
-    this.notebooksService.getDocumentsByBookAndPage(this.book, this.page).subscribe(
-      (data) => {
+    const countValue =
+      this.count && this.count > 0 && this.count <= 10000 ? this.count : 500;
 
-        if (data && Array.isArray(data) && data.length > 0) {
-          this.notebooks = data;
-        } else {
-          this.notebooks = [];
-          this.noResultsFound = true;
-        }
+    this.loading = true;
+    this.notebooksService.getNotebooks(countValue).subscribe(
+      (data) => {
+        this.notebooks = data;
         this.loading = false;
       },
       (error) => {
-        console.error('Error fetching documents', error);
-        this.snackBar.open(`Error fetching documents: ${error}`, 'Close', {
-          duration: 3000,
-        });
+        console.error('Error fetching notebooks', error);
         this.loading = false;
       }
     );
