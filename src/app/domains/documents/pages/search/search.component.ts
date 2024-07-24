@@ -21,4 +21,5 @@ export class SearchComponent {
   @Input({ required: true }) notebooks: any[] = [];
   @Input({ required: true }) loading: boolean = false;
   @Input({ required: true }) noResultsFound: boolean = false;
+  @Input({ required: true }) displayedColumns: string[] = [];
 }

@@ -43,6 +43,14 @@ export class NotebooksService {
     );
   }
 
+  getMarriageLicenses(searchType: 'GROOM' | 'BRIDE', surname: string, order: 0|1): Observable<any[]> {
+    return this.http
+      .get<any[]>(`${this.apiUrl}/search/documents/marriage-license`, {
+        params: { surname, searchType, order },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   getPdfDocument(book: number, page: number): Observable<Blob> {
     return this.http.get(`${this.apiUrl}/search/documents/pdf`, {
        //params: { book: '2170', page:'1' },

@@ -18,6 +18,16 @@ export class SearchByTypeComponent {
   notebooks: any[] = [];
   noResultsFound: boolean = false;
 
+  displayedColumns = [
+    'grantor',
+    'grantee',
+    'kind',
+    'book',
+    'page',
+    'date',
+    'actions',
+  ];
+
   documentTypes = [
     { label: 'ALL INSTRUMENT TYPES', value: '0' },
     { label: 'AFDT OF SEVERANCE', value: 'AOS' },

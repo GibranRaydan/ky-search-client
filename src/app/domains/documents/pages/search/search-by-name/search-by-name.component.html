@@ -2,7 +2,8 @@
   [title]="title"
   [notebooks]="notebooks"
   [loading]="loading"
-  [noResultsFound]="noResultsFound">
+  [noResultsFound]="noResultsFound"
+  [displayedColumns]="displayedColumns">
   <form [formGroup]="searchForm" (ngSubmit)="searchDocuments()">
 
     <mat-button-toggle-group formControlName="nameType">

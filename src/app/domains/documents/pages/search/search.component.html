@@ -16,7 +16,7 @@
 
   <div>
     @if(!loading && notebooks.length > 0){
-      <app-notebooks-table [notebooks]="notebooks" [loading]="loading"></app-notebooks-table>
+      <app-notebooks-table [notebooks]="notebooks" [loading]="loading" [displayedColumns]="displayedColumns"></app-notebooks-table>
     }
   </div>
 

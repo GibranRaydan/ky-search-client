@@ -14,18 +14,28 @@ import { searchImports } from '../search.declarations';
     MatSnackBarModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
-    searchImports
+    searchImports,
   ],
   templateUrl: './search-by-name.component.html',
   styleUrls: ['./search-by-name.component.css'],
 })
 export class SearchByNameComponent {
   title = 'Search By Name';
+
   notebooks: any[] = [];
-  displayedColumns: string[] = [];
   loading: boolean = false;
   noResultsFound = false;
   searchForm: FormGroup;
+
+  displayedColumns = [
+    'grantor',
+    'grantee',
+    'kind',
+    'book',
+    'page',
+    'date',
+    'actions',
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +45,7 @@ export class SearchByNameComponent {
     this.searchForm = this.fb.group({
       surname: ['', Validators.required],
       given: [''],
-      nameType: ['GRANTOR', Validators.required]
+      nameType: ['GRANTOR', Validators.required],
     });
 
     this.searchForm.get('nameType')?.valueChanges.subscribe((value) => {
@@ -58,23 +68,25 @@ export class SearchByNameComponent {
 
     this.loading = true;
     this.noResultsFound = false;
-    this.notebooksService.getDocumentsByName(surname, nameType, given).subscribe(
-      (data) => {
-        if (data && Array.isArray(data) && data.length > 0) {
-          this.notebooks = data;
-        } else {
-          this.notebooks = [];
-          this.noResultsFound = true;
+    this.notebooksService
+      .getDocumentsByName(surname, nameType, given)
+      .subscribe(
+        (data) => {
+          if (data && Array.isArray(data) && data.length > 0) {
+            this.notebooks = data;
+          } else {
+            this.notebooks = [];
+            this.noResultsFound = true;
+          }
+          this.loading = false;
+        },
+        (error) => {
+          console.error('Error fetching documents', error);
+          this.snackBar.open(`Error fetching documents: ${error}`, 'Close', {
+            duration: 3000,
+          });
+          this.loading = false;
         }
-        this.loading = false;
-      },
-      (error) => {
-        console.error('Error fetching documents', error);
-        this.snackBar.open(`Error fetching documents: ${error}`, 'Close', {
-          duration: 3000,
-        });
-        this.loading = false;
-      }
-    );
+      );
   }
 }

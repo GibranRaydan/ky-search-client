@@ -33,7 +33,7 @@ export class DocumentTableComponent
 {
   @Input() notebooks: any[] = [];
   @Input() loading: boolean = false;
-  displayedColumns: string[] = [
+  @Input() displayedColumns: string[] = [
     'grantor',
     'grantee',
     'kind',
