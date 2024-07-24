@@ -1,7 +1,5 @@
 <div style="margin: 20px;">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <mat-spinner *ngIf="loading"></mat-spinner>
-
     <ng-container matColumnDef="grantor">
       <th mat-header-cell *matHeaderCellDef> Grantor </th>
       <td mat-cell *matCellDef="let element"> {{element.grantor}} </td>
@@ -25,6 +23,18 @@
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Date </th>
       <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="groom-name">
+      <th mat-header-cell *matHeaderCellDef> Groom Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.groomGiven}} {{element.groomSurname}} </td>
+    </ng-container>
+    <ng-container matColumnDef="bride-name">
+      <th mat-header-cell *matHeaderCellDef> Bride Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.brideGiven}} {{element.brideSurname}} </td>
+    </ng-container>
+    <ng-container matColumnDef="license">
+      <th mat-header-cell *matHeaderCellDef> License </th>
+      <td mat-cell *matCellDef="let element"> {{element.license}} </td>
     </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>

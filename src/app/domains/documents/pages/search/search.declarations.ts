@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './search.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 export const searchImports = [
   MatButtonModule,
@@ -12,4 +13,5 @@ export const searchImports = [
   FormsModule,
   SearchComponent,
   MatSelectModule,
+  MatButtonToggleModule,
 ];

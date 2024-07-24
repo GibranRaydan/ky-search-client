@@ -6,7 +6,7 @@ import { searchImports } from '../search.declarations';
 @Component({
   selector: 'app-search-daily-notebooks',
   standalone: true,
-  imports: [ CommonModule, searchImports ],
+  imports: [CommonModule, searchImports],
   templateUrl: './search-daily-notebooks.component.html',
   styleUrls: ['./search-daily-notebooks.component.css'],
 })
@@ -14,9 +14,19 @@ export class SearchDailyNotebooksComponent {
   title = 'Search Daily Notebooks';
 
   @Input() notebooks: any[] = [];
-  @Input() displayedColumns: string[] = [];
   @Input() loading: boolean = false;
   count?: number;
+
+  displayedColumns = [
+    'grantor',
+    'grantee',
+    'kind',
+    'book',
+    'page',
+    'date',
+    'actions',
+  ];
+
   constructor(private notebooksService: NotebooksService) {}
 
   loadNotebooks(): void {

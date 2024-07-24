@@ -2,6 +2,37 @@
   [title]="title"
   [notebooks]="notebooks"
   [loading]="loading"
-  [noResultsFound]="false">
+  [noResultsFound]="noResultsFound"
+  [displayedColumns]="displayedColumns()">
   <!-- Page Inputs -->
+  <form [formGroup]="searchForm" (ngSubmit)="searchDocuments()">
+    <div class="flex flex-col items-start">
+      <div class="mb-5">
+        <mat-button-toggle-group formControlName="searchType" (click)="changeType()">
+          <mat-button-toggle value="GROOM">GROOM</mat-button-toggle>
+          <mat-button-toggle value="BRIDE">BRIDE</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <div class="flex flex-col w-1/4">
+        <mat-form-field>
+          <mat-label>Sort items:</mat-label>
+          <mat-select formControlName="order" required>
+            <mat-option value=0>Ascending</mat-option>
+            <mat-option value=1>Descending</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="input-field surname-input" appearance="fill">
+          <mat-label>Surname</mat-label>
+          <input title="surname" matInput formControlName="surname">
+          @if(searchForm.get('surname')?.hasError('required')){
+            <mat-error>Surname is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button class="load-documents-button" mat-raised-button type="submit" [disabled]="searchForm.invalid || loading">Search Documents</button>
+  </form>
 </app-search>
