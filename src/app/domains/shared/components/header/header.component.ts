@@ -19,7 +19,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 export class HeaderComponent {
   links = [
     { path: '', label: 'Home' },
-    { path: 'search/dailyNotebooks', label: 'Daily Notebooks' },
+    { path: 'search/dailyDocuments', label: 'Daily Documents' },
     { path: 'search/name', label: 'Search by Name' },
     { path: 'search/type', label: 'Search by Type' },
     { path: 'search/marriageLicenses', label: 'Search Marriage Licenses' },

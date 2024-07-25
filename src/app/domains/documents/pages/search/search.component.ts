@@ -18,7 +18,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 })
 export class SearchComponent {
   @Input({ required: true }) title: string = '';
-  @Input({ required: true }) notebooks: any[] = [];
+  @Input({ required: true }) documents: any[] = [];
   @Input({ required: true }) loading: boolean = false;
   @Input({ required: true }) noResultsFound: boolean = false;
   @Input({ required: true }) displayedColumns: string[] = [];

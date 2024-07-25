@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NotebooksService } from '../../../../../notebooks.service';
+import { DocumentsService } from '../../../../../documents.service';
 import { searchImports } from '../search.declarations';
 
 @Component({
@@ -22,7 +22,7 @@ import { searchImports } from '../search.declarations';
 export class SearchByNameComponent {
   title = 'Search By Name';
 
-  notebooks: any[] = [];
+  documents: any[] = [];
   loading: boolean = false;
   noResultsFound = false;
   searchForm: FormGroup;
@@ -39,7 +39,7 @@ export class SearchByNameComponent {
 
   constructor(
     private fb: FormBuilder,
-    private notebooksService: NotebooksService,
+    private documentsService: DocumentsService,
     private snackBar: MatSnackBar
   ) {
     this.searchForm = this.fb.group({
@@ -68,14 +68,14 @@ export class SearchByNameComponent {
 
     this.loading = true;
     this.noResultsFound = false;
-    this.notebooksService
+    this.documentsService
       .getDocumentsByName(surname, nameType, given)
       .subscribe(
         (data) => {
           if (data && Array.isArray(data) && data.length > 0) {
-            this.notebooks = data;
+            this.documents = data;
           } else {
-            this.notebooks = [];
+            this.documents = [];
             this.noResultsFound = true;
           }
           this.loading = false;

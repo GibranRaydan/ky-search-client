@@ -8,13 +8,13 @@ import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class NotebooksService {
+export class DocumentsService {
   private apiUrl = environment.apiUrl; // Adjust the URL as needed
 
   constructor(private http: HttpClient) { }
 
-  getNotebooks(count: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/notebooks?count=${count}`).pipe(
+  getDocuments(count: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/search/documents/daily?count=${count}`).pipe(
       catchError(this.handleError)
     );
   }

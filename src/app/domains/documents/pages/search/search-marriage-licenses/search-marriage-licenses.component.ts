@@ -1,7 +1,7 @@
 import { Component, computed, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { NotebooksService } from '../../../../../notebooks.service';
+import { DocumentsService } from '../../../../../documents.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { searchImports } from '../search.declarations';
 
@@ -15,7 +15,7 @@ import { searchImports } from '../search.declarations';
 export class SearchMarriageLicensesComponent {
   title = 'Search Marriage Licenses';
 
-  @Input() notebooks: any[] = [];
+  @Input() documents: any[] = [];
   @Input() loading: boolean = false;
   noResultsFound = false;
 
@@ -47,7 +47,7 @@ export class SearchMarriageLicensesComponent {
 
   constructor(
     private fb: FormBuilder,
-    private notebooksService: NotebooksService,
+    private documentsService: DocumentsService,
     private snackBar: MatSnackBar
   ) {}
 
@@ -59,14 +59,14 @@ export class SearchMarriageLicensesComponent {
 
     this.loading = true;
     this.noResultsFound = false;
-    this.notebooksService
+    this.documentsService
       .getMarriageLicenses(searchType, surname, order)
       .subscribe(
         (data) => {
           if (data && Array.isArray(data) && data.length > 0) {
-            this.notebooks = data;
+            this.documents = data;
           } else {
-            this.notebooks = [];
+            this.documents = [];
             this.noResultsFound = true;
           }
           this.loading = false;
