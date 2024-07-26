@@ -9,7 +9,7 @@
     <div class="flex flex-col items-start">
       <div class="mb-5">
         <mat-button-toggle-group formControlName="searchType" (click)="changeType()">
-          <mat-button-toggle value="GROOM">GROOM</mat-button-toggle>
+          <mat-button-toggle value="GROOM">GROOM</mat-button-toggle >
           <mat-button-toggle value="BRIDE">BRIDE</mat-button-toggle>
         </mat-button-toggle-group>
       </div>
@@ -33,6 +33,6 @@
       </div>
     </div>
 
-    <button class="load-documents-button" mat-flat-button type="submit" [disabled]="searchForm.invalid || loading">Search Documents</button>
+    <button class="load-documents-button" mat-flat-button type="submit" color="primary" [disabled]="searchForm.invalid || loading">Search Documents</button>
   </form>
 </app-search>
