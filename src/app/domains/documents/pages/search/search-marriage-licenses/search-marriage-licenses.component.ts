@@ -19,31 +19,25 @@ export class SearchMarriageLicensesComponent {
   loading: boolean = false;
   noResultsFound = false;
 
-  columns = ['license', 'book', 'page', 'date', 'actions'];
-
-  displayedColumns = computed(() => {
-    const filter = this.filter();
-    if (filter === 'GROOM') {
-      return ['groom-name', ...this.columns];
-    } else {
-      return ['bride-name', ...this.columns];
-    }
-  });
+  displayedColumns = [
+    'groom-name',
+    'bride-name',
+    'license',
+    'book',
+    'page',
+    'date',
+    'actions',
+  ];
 
   filter = signal<'GROOM' | 'BRIDE'>('GROOM');
 
   searchForm: FormGroup = new FormGroup({
-    searchType: new FormControl<'GROOM' | 'BRIDE'>('GROOM', [Validators.required]),
+    searchType: new FormControl<'GROOM' | 'BRIDE'>('GROOM', [
+      Validators.required,
+    ]),
     surname: new FormControl('', [Validators.required]),
     order: new FormControl('0', [Validators.required]),
   });
-
-  changeType() {
-    this.documents = [];
-    let filterTemp = this.searchForm.value.searchType;
-    this.filter.set(filterTemp);
-  }
-
   constructor(
     private documentsService: DocumentsService,
     private snackBar: MatSnackBar

@@ -3,12 +3,12 @@
   [documents]="documents"
   [loading]="loading"
   [noResultsFound]="noResultsFound"
-  [displayedColumns]="displayedColumns()">
+  [displayedColumns]="displayedColumns">
   <!-- Page Inputs -->
   <form [formGroup]="searchForm" (ngSubmit)="searchDocuments()">
     <div class="flex flex-col items-start">
       <div class="mb-5">
-        <mat-button-toggle-group formControlName="searchType" (click)="changeType()">
+        <mat-button-toggle-group formControlName="searchType">
           <mat-button-toggle value="GROOM">GROOM</mat-button-toggle >
           <mat-button-toggle value="BRIDE">BRIDE</mat-button-toggle>
         </mat-button-toggle-group>
