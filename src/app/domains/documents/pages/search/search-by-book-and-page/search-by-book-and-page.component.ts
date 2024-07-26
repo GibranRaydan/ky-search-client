@@ -2,7 +2,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { NotebooksService } from '../../../../../notebooks.service';
+import { DocumentsService } from '../../../../../documents.service';
 import { searchImports } from '../search.declarations';
 
 @Component({
@@ -14,7 +14,7 @@ import { searchImports } from '../search.declarations';
 })
 export class SearchByBookAndPageComponent {
   title = 'Search By Book and Page';
-  @Input() notebooks: any[] = [];
+  @Input() documents: any[] = [];
   @Input() loading: boolean = false;
   book?: number;
   page?: number;
@@ -31,7 +31,7 @@ export class SearchByBookAndPageComponent {
   ];
 
   constructor(
-    private notebooksService: NotebooksService,
+    private documentsService: DocumentsService,
     private snackBar: MatSnackBar
   ) {}
 
@@ -43,14 +43,14 @@ export class SearchByBookAndPageComponent {
 
     this.loading = true;
     this.noResultsFound = false;
-    this.notebooksService
+    this.documentsService
       .getDocumentsByBookAndPage(this.book, this.page)
       .subscribe(
         (data) => {
           if (data && Array.isArray(data) && data.length > 0) {
-            this.notebooks = data;
+            this.documents = data;
           } else {
-            this.notebooks = [];
+            this.documents = [];
             this.noResultsFound = true;
           }
           this.loading = false;

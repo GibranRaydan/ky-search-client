@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NotebooksService } from '../../../../../notebooks.service';
+import { DocumentsService } from '../../../../../documents.service';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { searchImports } from '../search.declarations';
 
@@ -15,7 +15,7 @@ export class SearchByTypeComponent {
   title = 'Search By Document Type';
   selectedValues: string[] = [];
   loading: boolean = false;
-  notebooks: any[] = [];
+  documents: any[] = [];
   noResultsFound: boolean = false;
 
   displayedColumns = [
@@ -137,19 +137,19 @@ export class SearchByTypeComponent {
   ];
 
   constructor(
-    private notebooksService: NotebooksService,
+    private documentsService: DocumentsService,
     private snackBar: MatSnackBar
   ) {}
 
   searchDocuments(): void {
     this.loading = true;
     this.noResultsFound = false;
-    this.notebooksService.getDocumentsByType(this.selectedValues).subscribe(
+    this.documentsService.getDocumentsByType(this.selectedValues).subscribe(
       (data) => {
         if (data && Array.isArray(data) && data.length > 0) {
-          this.notebooks = data;
+          this.documents = data;
         } else {
-          this.notebooks = [];
+          this.documents = [];
           this.noResultsFound = true;
         }
         this.loading = false;

@@ -1,14 +1,14 @@
 <app-search
   [title]="title"
-  [notebooks]="notebooks"
+  [documents]="documents"
   [loading]="loading"
   [noResultsFound]="false"
   [displayedColumns]="displayedColumns">
   <div>
     <div class="flex flex-col">
-      <mat-form-field class="notebooks-count-input" appearance="fill">
+      <mat-form-field class="documents-count-input" appearance="fill">
         <mat-label>Number of documents</mat-label>
-        <input title="number of notebooks to list" matInput type="number" [(ngModel)]="count" name="count" #countInput="ngModel" min="1" max="10000">
+        <input title="number of documents to list" matInput type="number" [(ngModel)]="count" name="count" #countInput="ngModel" min="1" max="10000">
         <mat-error *ngIf="countInput.errors && (countInput.dirty || countInput.touched)">
           <span *ngIf="countInput.errors?.['min']">Count must be greater than 0.</span>
           <span *ngIf="countInput.errors?.['max']">Count must be less than or equal to 10000.</span>
@@ -16,7 +16,7 @@
       </mat-form-field>
     </div>
 
-    <button mat-raised-button (click)="loadNotebooks()" [disabled]="loading">Load Notebooks</button>
+    <button mat-raised-button (click)="loadDocuments()" [disabled]="loading">Load Documents</button>
 
   </div>
 </app-search>

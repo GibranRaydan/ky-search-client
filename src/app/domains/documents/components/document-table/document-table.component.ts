@@ -12,11 +12,11 @@ import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { NotebooksService } from '../../../../notebooks.service';
+import { DocumentsService } from '../../../../documents.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-notebooks-table',
+  selector: 'app-documents-table',
   standalone: true,
   imports: [
     CommonModule,
@@ -31,7 +31,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class DocumentTableComponent
   implements OnInit, AfterViewInit, OnChanges
 {
-  @Input() notebooks: any[] = [];
+  @Input() documents: any[] = [];
   @Input() loading: boolean = false;
   @Input() displayedColumns: string[] = [
     'grantor',
@@ -43,17 +43,17 @@ export class DocumentTableComponent
     'actions',
   ];
 
-  dataSource = new MatTableDataSource<any>(this.notebooks);
+  dataSource = new MatTableDataSource<any>(this.documents);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private notebooksService: NotebooksService,
+    private documentsService: DocumentsService,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
-    this.dataSource.data = this.notebooks;
+    this.dataSource.data = this.documents;
   }
 
   ngAfterViewInit() {
@@ -61,13 +61,13 @@ export class DocumentTableComponent
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['notebooks']) {
-      this.dataSource.data = this.notebooks;
+    if (changes['documents']) {
+      this.dataSource.data = this.documents;
     }
   }
 
   downloadPdf(element: any) {
-    this.notebooksService.getPdfDocument(element.book, element.page).subscribe(
+    this.documentsService.getPdfDocument(element.book, element.page).subscribe(
       (blob) => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -86,7 +86,7 @@ export class DocumentTableComponent
   }
 
   downloadTiff(element: any) {
-    this.notebooksService.getTifDocument(element.book, element.page).subscribe(
+    this.documentsService.getTifDocument(element.book, element.page).subscribe(
       (blob) => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');

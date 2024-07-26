@@ -1,19 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NotebooksService } from '../../../../../notebooks.service';
+import { DocumentsService } from '../../../../../documents.service';
 import { searchImports } from '../search.declarations';
 
 @Component({
-  selector: 'app-search-daily-notebooks',
+  selector: 'app-search-daily-documents',
   standalone: true,
   imports: [CommonModule, searchImports],
-  templateUrl: './search-daily-notebooks.component.html',
-  styleUrls: ['./search-daily-notebooks.component.css'],
+  templateUrl: './search-daily-documents.component.html',
+  styleUrls: ['./search-daily-documents.component.css'],
 })
-export class SearchDailyNotebooksComponent {
-  title = 'Search Daily Notebooks';
+export class SearchDailyDocumentsComponent {
+  title = 'Search Daily Documents';
 
-  @Input() notebooks: any[] = [];
+  @Input() documents: any[] = [];
   @Input() loading: boolean = false;
   count?: number;
 
@@ -27,10 +27,10 @@ export class SearchDailyNotebooksComponent {
     'actions',
   ];
 
-  constructor(private notebooksService: NotebooksService) {}
+  constructor(private documentsService: DocumentsService) {}
 
-  loadNotebooks(): void {
-    console.log('loadNotebooks');
+  loadDocuments(): void {
+    console.log('loadDocuments');
     if (this.count !== undefined && (this.count <= 0 || this.count > 10000)) {
       console.warn('Count must be between 1 and 10000.');
       return;
@@ -40,13 +40,13 @@ export class SearchDailyNotebooksComponent {
       this.count && this.count > 0 && this.count <= 10000 ? this.count : 500;
 
     this.loading = true;
-    this.notebooksService.getNotebooks(countValue).subscribe(
+    this.documentsService.getDocuments(countValue).subscribe(
       (data) => {
-        this.notebooks = data;
+        this.documents = data;
         this.loading = false;
       },
       (error) => {
-        console.error('Error fetching notebooks', error);
+        console.error('Error fetching documents', error);
         this.loading = false;
       }
     );

@@ -20,7 +20,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'Notebook List';
-  notebooks: any[] = [];
+  documents: any[] = [];
   loading = false;
 
   ngOnInit(): void {}

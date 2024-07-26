@@ -11,12 +11,12 @@
   </div>
 
   @if(loading){
-    <mat-progress-bar mode="indeterminate" class="load-notebooks-spinner"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" class="load-documents-spinner"></mat-progress-bar>
   }
 
   <div>
-    @if(!loading && notebooks.length > 0){
-      <app-notebooks-table [notebooks]="notebooks" [loading]="loading" [displayedColumns]="displayedColumns"></app-notebooks-table>
+    @if(!loading && documents.length > 0){
+      <app-documents-table [documents]="documents" [loading]="loading" [displayedColumns]="displayedColumns"></app-documents-table>
     }
   </div>
 
