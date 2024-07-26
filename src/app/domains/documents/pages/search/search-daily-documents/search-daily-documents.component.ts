@@ -23,7 +23,7 @@ export class SearchDailyDocumentsComponent {
   loading: boolean = false;
 
   searchForm: FormGroup = new FormGroup({
-    count: new FormControl(null, [
+    count: new FormControl(500, [
       Validators.required,
       Validators.pattern("^[0-9]*$"),
       Validators.min(1),
