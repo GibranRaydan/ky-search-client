@@ -37,10 +37,16 @@ export class SearchByBookAndPageComponent {
   searchForm: FormGroup = new FormGroup({
     book: new FormControl(null, [
       Validators.required,
-      Validators.min(1)]),
+      Validators.pattern('^[0-9]*$'),
+      Validators.min(1),
+      Validators.max(9999999999),
+    ]),
     page: new FormControl(null, [
       Validators.required,
-      Validators.min(1)]),
+      Validators.pattern('^[0-9]*$'),
+      Validators.min(1),
+      Validators.max(9999999999),
+    ]),
   });
 
   constructor(

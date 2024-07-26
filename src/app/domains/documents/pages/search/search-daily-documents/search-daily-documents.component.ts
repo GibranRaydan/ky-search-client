@@ -25,6 +25,7 @@ export class SearchDailyDocumentsComponent {
   searchForm: FormGroup = new FormGroup({
     count: new FormControl(null, [
       Validators.required,
+      Validators.pattern("^[0-9]*$"),
       Validators.min(1),
       Validators.max(10000)]),
   });

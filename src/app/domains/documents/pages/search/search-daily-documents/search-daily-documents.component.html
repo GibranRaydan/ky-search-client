@@ -13,8 +13,9 @@
         <mat-label>Number of documents</mat-label>
         <input title="count" matInput type="number" formControlName="count">
         <mat-error *ngIf="searchForm.get('count')?.hasError('required')">*The number of documents is required.</mat-error>
-        <mat-error *ngIf="searchForm.get('count')?.hasError('min')">The number must be > 0</mat-error>
-        <mat-error *ngIf="searchForm.get('count')?.hasError('max')">The number must be &lt; 10000</mat-error>
+        <mat-error *ngIf="searchForm.get('count')?.hasError('min')">*The number must be > 0</mat-error>
+        <mat-error *ngIf="searchForm.get('count')?.hasError('max')">*The number must be &lt; 10000</mat-error>
+        <mat-error *ngIf="searchForm.get('count')?.hasError('pattern')">*The number must be a whole number.</mat-error>
       </mat-form-field>
 
     </div>

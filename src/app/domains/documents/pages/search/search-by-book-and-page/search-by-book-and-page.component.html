@@ -12,14 +12,18 @@
         <mat-label>Book</mat-label>
         <input title="book" type="number" matInput formControlName="book">
         <mat-error *ngIf="searchForm.get('book')?.hasError('min')">*Book must be at least 1.</mat-error>
+        <mat-error *ngIf="searchForm.get('book')?.hasError('max')">*Book must be less than 10.000.000.000.</mat-error>
         <mat-error *ngIf="searchForm.get('book')?.hasError('required')">*Book number is required.</mat-error>
+        <mat-error *ngIf="searchForm.get('book')?.hasError('pattern')">*Book must be an integer.</mat-error>
       </mat-form-field>
 
       <mat-form-field class="input-field" appearance="fill">
         <mat-label>Page</mat-label>
         <input title="page" type="number" matInput formControlName="page">
-        <mat-error *ngIf="searchForm.get('page')?.hasError('min')">*Book must be at least 1.</mat-error>
+        <mat-error *ngIf="searchForm.get('page')?.hasError('min')">*Page must be at least 1.</mat-error>
+        <mat-error *ngIf="searchForm.get('page')?.hasError('max')">*Page must be less than 10.000.000.000.</mat-error>
         <mat-error *ngIf="searchForm.get('page')?.hasError('required')">*Page number is required.</mat-error>
+        <mat-error *ngIf="searchForm.get('page')?.hasError('pattern')">*Page must be an integer.</mat-error>
       </mat-form-field>
     </div>
 
