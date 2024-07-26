@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { CheckLiveComponent } from "../../../shared/components/check-live/check-live.component";
 import { DocumentTableComponent } from "../../components/document-table/document-table.component";
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -8,7 +7,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   selector: 'app-search',
   standalone: true,
   imports: [
-    CheckLiveComponent,
     DocumentTableComponent,
     MatTableModule,
     MatProgressBarModule,
