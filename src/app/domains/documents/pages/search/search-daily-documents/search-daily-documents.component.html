@@ -4,19 +4,23 @@
   [loading]="loading"
   [noResultsFound]="false"
   [displayedColumns]="displayedColumns">
-  <div>
-    <div class="flex flex-col">
+
+  <form [formGroup]="searchForm" (ngSubmit)="loadDocuments()">
+
+    <div>
+
       <mat-form-field class="documents-count-input" appearance="fill">
         <mat-label>Number of documents</mat-label>
-        <input title="number of documents to list" matInput type="number" [(ngModel)]="count" name="count" #countInput="ngModel" min="1" max="10000">
-        <mat-error *ngIf="countInput.errors && (countInput.dirty || countInput.touched)">
-          <span *ngIf="countInput.errors?.['min']">Count must be greater than 0.</span>
-          <span *ngIf="countInput.errors?.['max']">Count must be less than or equal to 10000.</span>
-        </mat-error>
+        <input title="count" matInput type="number" formControlName="count">
+        <mat-error *ngIf="searchForm.get('count')?.hasError('required')">*The number of documents is required.</mat-error>
+        <mat-error *ngIf="searchForm.get('count')?.hasError('min')">*The number must be > 0</mat-error>
+        <mat-error *ngIf="searchForm.get('count')?.hasError('max')">*The number must be &lt; 10000</mat-error>
+        <mat-error *ngIf="searchForm.get('count')?.hasError('pattern')">*The number must be a whole number.</mat-error>
       </mat-form-field>
+
     </div>
 
-    <button mat-raised-button (click)="loadDocuments()" [disabled]="loading">Load Documents</button>
+    <button mat-flat-button type="submit" [disabled]="searchForm.invalid || loading">Load Documents</button>
 
-  </div>
+  </form>
 </app-search>
