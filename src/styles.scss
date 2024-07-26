@@ -3,6 +3,9 @@
 @use '@angular/material' as mat;
 @include mat.core();
 
+$dark-primary-text: rgba(black, 0.87);
+$light-primary-text: white;
+
 $mat-primary: (
   50: #E3F2FD,
   100: #BBDEFB,
@@ -10,6 +13,8 @@ $mat-primary: (
   300: #64B5F6,
   400: #42A5F5,
   500: #2196F3,
+  600: #1E88E5,
+  700: #1976D2,
   800: #1565C0,
   900: #0D47A1,
   A200: #448AFF,
