@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CheckLiveComponent } from './check-live.component';
+import { ApiDeadComponent } from './api-dead.component';
 
-describe('CheckLiveComponent', () => {
-  let component: CheckLiveComponent;
-  let fixture: ComponentFixture<CheckLiveComponent>;
+describe('ApiDeadComponent', () => {
+  let component: ApiDeadComponent;
+  let fixture: ComponentFixture<ApiDeadComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CheckLiveComponent]
+      imports: [ApiDeadComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CheckLiveComponent);
+    fixture = TestBed.createComponent(ApiDeadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
