@@ -16,7 +16,7 @@
     <div class="mt-3">
       <mat-form-field class="input-field" appearance="fill">
         <mat-label>Surname</mat-label>
-        <input title="surname" type="number" matInput formControlName="surname">
+        <input title="surname" type="string" matInput formControlName="surname">
         <mat-error *ngIf="searchForm.get('surname')?.hasError('required')">*Surname is required</mat-error>
       </mat-form-field>
 
