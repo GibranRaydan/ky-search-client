@@ -27,7 +27,7 @@
           <mat-label>Surname</mat-label>
           <input title="surname" matInput formControlName="surname">
           @if(searchForm.get('surname')?.hasError('required')){
-            <mat-error>Surname is required</mat-error>
+            <mat-error>*Surname is required</mat-error>
           }
         </mat-form-field>
       </div>

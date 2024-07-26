@@ -4,6 +4,7 @@
   [loading]="loading"
   [noResultsFound]="noResultsFound"
   [displayedColumns]="displayedColumns">
+
   <form [formGroup]="searchForm" (ngSubmit)="searchDocuments()">
 
     <mat-button-toggle-group formControlName="nameType">
@@ -12,21 +13,22 @@
       <mat-button-toggle value="BOTH">BOTH</mat-button-toggle>
     </mat-button-toggle-group>
 
-    <br />
-    <mat-form-field class="input-field surname-input" appearance="fill">
-      <mat-label>Surname</mat-label>
-      <input title="surname" matInput formControlName="surname">
-      <mat-error *ngIf="searchForm.get('surname')?.hasError('required')">Surname is required</mat-error>
-    </mat-form-field>
+    <div class="mt-3">
+      <mat-form-field class="input-field" appearance="fill">
+        <mat-label>Surname</mat-label>
+        <input title="surname" type="number" matInput formControlName="surname">
+        <mat-error *ngIf="searchForm.get('surname')?.hasError('required')">*Surname is required</mat-error>
+      </mat-form-field>
 
-    <mat-form-field class="input-field given-input" appearance="fill">
-      <mat-label>Given</mat-label>
-      <input title="given" matInput formControlName="given">
-      <mat-error *ngIf="searchForm.get('given')?.hasError('required')">Given name is required for BOTH</mat-error>
-    </mat-form-field>
+      <mat-form-field class="input-field" appearance="fill">
+        <mat-label>Given</mat-label>
+        <input title="given" matInput formControlName="given">
+        <mat-error *ngIf="searchForm.get('given')?.hasError('required')">*Given name is required</mat-error>
+      </mat-form-field>
+    </div>
 
-    <br />
-    <button class="load-documents-button" mat-raised-button type="submit" [disabled]="searchForm.invalid || loading">Search Documents</button>
+    <button mat-raised-button type="submit" [disabled]="searchForm.invalid || loading">Search Documents</button>
 
   </form>
+
 </app-search>

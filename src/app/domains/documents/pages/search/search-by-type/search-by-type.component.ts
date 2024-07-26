@@ -13,7 +13,6 @@ import { searchImports } from '../search.declarations';
 })
 export class SearchByTypeComponent {
   title = 'Search By Document Type';
-  selectedValues: string[] = [];
   loading: boolean = false;
   documents: any[] = [];
   noResultsFound: boolean = false;
@@ -27,6 +26,8 @@ export class SearchByTypeComponent {
     'date',
     'actions',
   ];
+
+  selectedValues: string[] = [];
 
   documentTypes = [
     { label: 'ALL INSTRUMENT TYPES', value: '0' },

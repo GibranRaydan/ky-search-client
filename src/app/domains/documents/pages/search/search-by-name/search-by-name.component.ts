@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DocumentsService } from '../../../../../documents.service';
 import { searchImports } from '../search.declarations';
 
@@ -10,9 +9,8 @@ import { searchImports } from '../search.declarations';
   selector: 'app-search-by-name',
   standalone: true,
   imports: [
-    CommonModule,
     MatSnackBarModule,
-    MatButtonToggleModule,
+    CommonModule,
     ReactiveFormsModule,
     searchImports,
   ],
@@ -25,7 +23,6 @@ export class SearchByNameComponent {
   documents: any[] = [];
   loading: boolean = false;
   noResultsFound = false;
-  searchForm: FormGroup;
 
   displayedColumns = [
     'grantor',
@@ -37,17 +34,16 @@ export class SearchByNameComponent {
     'actions',
   ];
 
+  searchForm: FormGroup = new FormGroup({
+    nameType: new FormControl('GRANTOR', [Validators.required]),
+    surname: new FormControl(null, [Validators.required]),
+    given: new FormControl(null),
+  });
+
   constructor(
-    private fb: FormBuilder,
     private documentsService: DocumentsService,
     private snackBar: MatSnackBar
   ) {
-    this.searchForm = this.fb.group({
-      surname: ['', Validators.required],
-      given: [''],
-      nameType: ['GRANTOR', Validators.required],
-    });
-
     this.searchForm.get('nameType')?.valueChanges.subscribe((value) => {
       const givenControl = this.searchForm.get('given');
       if (value === 'BOTH') {

@@ -5,17 +5,26 @@
   [noResultsFound]="noResultsFound"
   [displayedColumns]="displayedColumns">
 
-    <mat-form-field class="input-field book-input" appearance="fill">
-      <mat-label>Book</mat-label>
-      <input title="book" matInput type="number" [(ngModel)]="book" name="book">
-    </mat-form-field>
+  <form [formGroup]="searchForm" (ngSubmit)="searchDocuments()">
 
-    <mat-form-field class="input-field page-input" appearance="fill">
-      <mat-label>Page</mat-label>
-      <input title="page" matInput type="number" [(ngModel)]="page" name="page">
-    </mat-form-field>
+    <div>
+      <mat-form-field class="input-field" appearance="fill">
+        <mat-label>Book</mat-label>
+        <input title="book" type="number" matInput formControlName="book">
+        <mat-error *ngIf="searchForm.get('book')?.hasError('min')">*Book must be at least 1.</mat-error>
+        <mat-error *ngIf="searchForm.get('book')?.hasError('required')">*Book number is required.</mat-error>
+      </mat-form-field>
 
-    <br />
-    <button mat-raised-button (click)="searchDocuments()" [disabled]="loading">Search Documents</button>
+      <mat-form-field class="input-field" appearance="fill">
+        <mat-label>Page</mat-label>
+        <input title="page" type="number" matInput formControlName="page">
+        <mat-error *ngIf="searchForm.get('page')?.hasError('min')">*Book must be at least 1.</mat-error>
+        <mat-error *ngIf="searchForm.get('page')?.hasError('required')">*Page number is required.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button type="submit" [disabled]="searchForm.invalid || loading">Search Documents</button>
+
+  </form>
 
 </app-search>

@@ -2,20 +2,32 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocumentsService } from '../../../../../documents.service';
 import { searchImports } from '../search.declarations';
+import {
+  ReactiveFormsModule,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-search-daily-documents',
   standalone: true,
-  imports: [CommonModule, searchImports],
+  imports: [CommonModule, searchImports, ReactiveFormsModule],
   templateUrl: './search-daily-documents.component.html',
   styleUrls: ['./search-daily-documents.component.css'],
 })
 export class SearchDailyDocumentsComponent {
   title = 'Search Daily Documents';
 
-  @Input() documents: any[] = [];
-  @Input() loading: boolean = false;
-  count?: number;
+  documents: any[] = [];
+  loading: boolean = false;
+
+  searchForm: FormGroup = new FormGroup({
+    count: new FormControl(null, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(10000)]),
+  });
 
   displayedColumns = [
     'grantor',
@@ -30,14 +42,13 @@ export class SearchDailyDocumentsComponent {
   constructor(private documentsService: DocumentsService) {}
 
   loadDocuments(): void {
-    console.log('loadDocuments');
-    if (this.count !== undefined && (this.count <= 0 || this.count > 10000)) {
-      console.warn('Count must be between 1 and 10000.');
+    if (this.searchForm.invalid) {
       return;
     }
 
-    const countValue =
-      this.count && this.count > 0 && this.count <= 10000 ? this.count : 500;
+    const { count } = this.searchForm.value;
+
+    const countValue = count && count > 0 && count <= 10000 ? count : 500;
 
     this.loading = true;
     this.documentsService.getDocuments(countValue).subscribe(
