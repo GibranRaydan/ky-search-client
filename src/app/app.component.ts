@@ -33,7 +33,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.checkLive().subscribe(
-      (data) => {},
+      (data) => {
+        this.apiLiveStatus = data.live;
+      },
       (error) => {
         console.error('Error checking live status:', error);
         this.router.navigate(['/']);
