@@ -15,26 +15,11 @@ import { searchImports } from '../search.declarations';
 export class SearchMarriageLicensesComponent {
   title = 'Search Marriage Licenses';
 
-  @Input() documents: any[] = [];
-  @Input() loading: boolean = false;
+  documents: any[] = [];
+  loading: boolean = false;
   noResultsFound = false;
 
   columns = ['license', 'book', 'page', 'date', 'actions'];
-
-  filter = signal<'GROOM' | 'BRIDE'>('GROOM');
-
-  changeType() {
-    let filterTemp = this.searchForm.value.searchType;
-    this.filter.set(filterTemp);
-  }
-
-  searchForm: FormGroup = new FormGroup({
-    searchType: new FormControl<'GROOM' | 'BRIDE'>('GROOM', [
-      Validators.required,
-    ]),
-    surname: new FormControl('', [Validators.required]),
-    order: new FormControl<0 | 1>(0, [Validators.required]),
-  });
 
   displayedColumns = computed(() => {
     const filter = this.filter();
@@ -45,8 +30,21 @@ export class SearchMarriageLicensesComponent {
     }
   });
 
+  filter = signal<'GROOM' | 'BRIDE'>('GROOM');
+
+  searchForm: FormGroup = new FormGroup({
+    searchType: new FormControl<'GROOM' | 'BRIDE'>('GROOM', [Validators.required]),
+    surname: new FormControl('', [Validators.required]),
+    order: new FormControl('0', [Validators.required]),
+  });
+
+  changeType() {
+    this.documents = [];
+    let filterTemp = this.searchForm.value.searchType;
+    this.filter.set(filterTemp);
+  }
+
   constructor(
-    private fb: FormBuilder,
     private documentsService: DocumentsService,
     private snackBar: MatSnackBar
   ) {}
@@ -55,6 +53,7 @@ export class SearchMarriageLicensesComponent {
     if (this.searchForm.invalid) {
       return;
     }
+
     const { searchType, surname, order } = this.searchForm.value;
 
     this.loading = true;
