@@ -35,10 +35,11 @@ export class SearchMarriageLicensesComponent {
   searchForm: FormGroup = new FormGroup({
     searchType: new FormControl<'GROOM' | 'BRIDE'>('GROOM', [Validators.required]),
     surname: new FormControl('', [Validators.required]),
-    order: new FormControl<0 | 1>(0, [Validators.required]),
+    order: new FormControl('0', [Validators.required]),
   });
 
   changeType() {
+    this.documents = [];
     let filterTemp = this.searchForm.value.searchType;
     this.filter.set(filterTemp);
   }
