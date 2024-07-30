@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, Validators, FormControl, AbstractControl, ValidationErrors } from '@angular/forms';
 import { DocumentsService } from '../../../../../documents.service';
 import { searchImports } from '../search.declarations';
 
@@ -36,8 +36,8 @@ export class SearchByNameComponent {
 
   searchForm: FormGroup = new FormGroup({
     nameType: new FormControl('GRANTOR', [Validators.required]),
-    surname: new FormControl(null, [Validators.required]),
-    given: new FormControl(null),
+    surname: new FormControl(null, [Validators.required, this.noSpecialCharactersValidator]),
+    given: new FormControl(null, [this.noSpecialCharactersValidator]),
   });
 
   constructor(
@@ -47,12 +47,19 @@ export class SearchByNameComponent {
     this.searchForm.get('nameType')?.valueChanges.subscribe((value) => {
       const givenControl = this.searchForm.get('given');
       if (value === 'BOTH') {
-        givenControl?.setValidators(Validators.required);
+        givenControl?.setValidators([Validators.required, this.noSpecialCharactersValidator]);
       } else {
         givenControl?.clearValidators();
+        givenControl?.setValidators(this.noSpecialCharactersValidator);
       }
       givenControl?.updateValueAndValidity();
     });
+  }
+
+  noSpecialCharactersValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    const valid = /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/.test(value);
+    return valid ? null : { invalidCharacters: true };
   }
 
   searchDocuments(): void {

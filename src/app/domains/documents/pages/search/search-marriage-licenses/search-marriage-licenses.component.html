@@ -23,12 +23,11 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="input-field surname-input" appearance="fill">
+        <mat-form-field class="input-field" appearance="fill">
           <mat-label>Surname</mat-label>
-          <input title="surname" matInput formControlName="surname">
-          @if(searchForm.get('surname')?.hasError('required')){
-            <mat-error>*Surname is required</mat-error>
-          }
+          <input title="surname" type="text" matInput formControlName="surname">
+          <mat-error *ngIf="searchForm.get('surname')?.hasError('required')" class="error-message">*Surname is required</mat-error>
+          <mat-error *ngIf="searchForm.get('surname')?.hasError('invalidCharacters')" class="error-message">*Surname contains invalid characters</mat-error>
         </mat-form-field>
       </div>
     </div>
