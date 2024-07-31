@@ -1,9 +1,8 @@
-<app-search
-  [title]="title"
-  [documents]="documents"
-  [loading]="loading"
-  [noResultsFound]="noResultsFound"
-  [displayedColumns]="displayedColumns">
+<app-search [title]="title"
+            [documents]="documents"
+            [loading]="loading"
+            [noResultsFound]="noResultsFound"
+            [displayedColumns]="displayedColumns">
 
   <form [formGroup]="searchForm" (ngSubmit)="searchDocuments()">
 
@@ -16,14 +15,17 @@
     <div class="mt-3">
       <mat-form-field class="input-field" appearance="fill">
         <mat-label>Surname</mat-label>
-        <input title="surname" type="string" matInput formControlName="surname">
-        <mat-error *ngIf="searchForm.get('surname')?.hasError('required')">*Surname is required</mat-error>
+        <input title="surname" type="text" matInput formControlName="surname">
+        <mat-error *ngIf="searchForm.get('surname')?.hasError('required')" class="error-message">*Surname is required</mat-error>
+        <!--<mat-error *ngIf="searchForm.get('surname')?.hasError('cannotContainSpace')" class="error-message">*Surname contains white spaces</mat-error>-->
+        <mat-error *ngIf="searchForm.get('surname')?.hasError('pattern') || searchForm.get('surname')?.hasError('cannotContainSpace')" class="error-message">*Surname contains invalid characters</mat-error>
       </mat-form-field>
 
       <mat-form-field class="input-field" appearance="fill">
         <mat-label>Given</mat-label>
-        <input title="given" matInput formControlName="given">
-        <mat-error *ngIf="searchForm.get('given')?.hasError('required')">*Given name is required</mat-error>
+        <input title="given" type="text" matInput formControlName="given">
+        <mat-error *ngIf="searchForm.get('given')?.hasError('required')" class="error-message">*Given name is required</mat-error>
+        <mat-error *ngIf="searchForm.get('surname')?.hasError('pattern') || searchForm.get('surname')?.hasError('cannotContainSpace')" class="error-message">*Surname contains invalid characters</mat-error>
       </mat-form-field>
     </div>
 

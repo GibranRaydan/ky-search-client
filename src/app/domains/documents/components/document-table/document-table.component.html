@@ -1,5 +1,5 @@
 <div style="margin: 20px;">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 custom-table">
     <ng-container matColumnDef="grantor">
       <th mat-header-cell *matHeaderCellDef> Grantor </th>
       <td mat-cell *matCellDef="let element"> {{element.grantor}} </td>
@@ -38,12 +38,11 @@
     </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" class="actions-cell">
         <button mat-raised-button class="action-button" (click)="downloadPdf(element)" [disabled]="!element.book || !element.page">PDF</button>
         <button mat-raised-button class="action-button" (click)="downloadTiff(element)" [disabled]="!element.book || !element.page">TIFF</button>
       </td>
     </ng-container>
-    <!-- Add more columns as needed -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

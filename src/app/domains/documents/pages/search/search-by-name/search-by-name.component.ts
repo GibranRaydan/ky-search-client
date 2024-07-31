@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, Validators, FormControl, AbstractControl, ValidationErrors } from '@angular/forms';
 import { DocumentsService } from '../../../../../documents.service';
 import { searchImports } from '../search.declarations';
+import { CustomValidators } from '../../../../../custom-validators';
 
 @Component({
   selector: 'app-search-by-name',
@@ -36,8 +37,15 @@ export class SearchByNameComponent {
 
   searchForm: FormGroup = new FormGroup({
     nameType: new FormControl('GRANTOR', [Validators.required]),
-    surname: new FormControl(null, [Validators.required]),
-    given: new FormControl(null),
+    surname: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/),
+      CustomValidators.cannotContainSpace,
+    ]),
+    given: new FormControl(null, [
+      Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/),
+      CustomValidators.cannotContainSpace,
+    ]),
   });
 
   constructor(
@@ -47,9 +55,17 @@ export class SearchByNameComponent {
     this.searchForm.get('nameType')?.valueChanges.subscribe((value) => {
       const givenControl = this.searchForm.get('given');
       if (value === 'BOTH') {
-        givenControl?.setValidators(Validators.required);
+        givenControl?.setValidators([
+          Validators.required,
+          Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/),
+          CustomValidators.cannotContainSpace,
+        ]);
       } else {
         givenControl?.clearValidators();
+        givenControl?.setValidators([
+          Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/),
+          CustomValidators.cannotContainSpace,
+        ]);
       }
       givenControl?.updateValueAndValidity();
     });
