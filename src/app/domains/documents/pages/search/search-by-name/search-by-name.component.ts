@@ -4,6 +4,7 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { ReactiveFormsModule, FormGroup, Validators, FormControl, AbstractControl, ValidationErrors } from '@angular/forms';
 import { DocumentsService } from '../../../../../documents.service';
 import { searchImports } from '../search.declarations';
+import { CustomValidators } from '../../../../../custom-validators';
 
 @Component({
   selector: 'app-search-by-name',
@@ -36,8 +37,15 @@ export class SearchByNameComponent {
 
   searchForm: FormGroup = new FormGroup({
     nameType: new FormControl('GRANTOR', [Validators.required]),
-    surname: new FormControl(null, [Validators.required, this.noSpecialCharactersValidator]),
-    given: new FormControl(null, [this.noSpecialCharactersValidator]),
+    surname: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/),
+      CustomValidators.cannotContainSpace,
+    ]),
+    given: new FormControl(null, [
+      Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/),
+      CustomValidators.cannotContainSpace,
+    ]),
   });
 
   constructor(
@@ -47,19 +55,20 @@ export class SearchByNameComponent {
     this.searchForm.get('nameType')?.valueChanges.subscribe((value) => {
       const givenControl = this.searchForm.get('given');
       if (value === 'BOTH') {
-        givenControl?.setValidators([Validators.required, this.noSpecialCharactersValidator]);
+        givenControl?.setValidators([
+          Validators.required,
+          Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/),
+          CustomValidators.cannotContainSpace,
+        ]);
       } else {
         givenControl?.clearValidators();
-        givenControl?.setValidators(this.noSpecialCharactersValidator);
+        givenControl?.setValidators([
+          Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/),
+          CustomValidators.cannotContainSpace,
+        ]);
       }
       givenControl?.updateValueAndValidity();
     });
-  }
-
-  noSpecialCharactersValidator(control: AbstractControl): ValidationErrors | null {
-    const value = control.value;
-    const valid = /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/.test(value);
-    return valid ? null : { invalidCharacters: true };
   }
 
   searchDocuments(): void {

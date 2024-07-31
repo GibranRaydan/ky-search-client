@@ -17,14 +17,15 @@
         <mat-label>Surname</mat-label>
         <input title="surname" type="text" matInput formControlName="surname">
         <mat-error *ngIf="searchForm.get('surname')?.hasError('required')" class="error-message">*Surname is required</mat-error>
-        <mat-error *ngIf="searchForm.get('surname')?.hasError('invalidCharacters')" class="error-message">*Surname contains invalid characters</mat-error>
+        <!--<mat-error *ngIf="searchForm.get('surname')?.hasError('cannotContainSpace')" class="error-message">*Surname contains white spaces</mat-error>-->
+        <mat-error *ngIf="searchForm.get('surname')?.hasError('pattern') || searchForm.get('surname')?.hasError('cannotContainSpace')" class="error-message">*Surname contains invalid characters</mat-error>
       </mat-form-field>
 
       <mat-form-field class="input-field" appearance="fill">
         <mat-label>Given</mat-label>
         <input title="given" type="text" matInput formControlName="given">
         <mat-error *ngIf="searchForm.get('given')?.hasError('required')" class="error-message">*Given name is required</mat-error>
-        <mat-error *ngIf="searchForm.get('given')?.hasError('invalidCharacters')" class="error-message">*Given name contains invalid characters</mat-error>
+        <mat-error *ngIf="searchForm.get('surname')?.hasError('pattern') || searchForm.get('surname')?.hasError('cannotContainSpace')" class="error-message">*Surname contains invalid characters</mat-error>
       </mat-form-field>
     </div>
 

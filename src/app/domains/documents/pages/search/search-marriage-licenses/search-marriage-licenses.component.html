@@ -27,7 +27,7 @@
           <mat-label>Surname</mat-label>
           <input title="surname" type="text" matInput formControlName="surname">
           <mat-error *ngIf="searchForm.get('surname')?.hasError('required')" class="error-message">*Surname is required</mat-error>
-          <mat-error *ngIf="searchForm.get('surname')?.hasError('invalidCharacters')" class="error-message">*Surname contains invalid characters</mat-error>
+          <mat-error *ngIf="searchForm.get('surname')?.hasError('pattern') || searchForm.get('surname')?.hasError('cannotContainSpace') " class="error-message">*Surname contains invalid characters</mat-error>
         </mat-form-field>
       </div>
     </div>

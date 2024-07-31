@@ -4,6 +4,8 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl, A
 import { DocumentsService } from '../../../../../documents.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { searchImports } from '../search.declarations';
+import { CustomValidators } from '../../../../../custom-validators';
+
 
 @Component({
   selector: 'app-search-marriage-licenses',
@@ -35,19 +37,16 @@ export class SearchMarriageLicensesComponent {
     searchType: new FormControl<'GROOM' | 'BRIDE'>('GROOM', [
       Validators.required,
     ]),
-    surname: new FormControl('', [Validators.required, this.noSpecialCharactersValidator]),
+    surname: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/),
+      CustomValidators.cannotContainSpace]),
     order: new FormControl('0', [Validators.required]),
   });
   constructor(
     private documentsService: DocumentsService,
     private snackBar: MatSnackBar
   ) { }
-
-  noSpecialCharactersValidator(control: AbstractControl): ValidationErrors | null {
-    const value = control.value;
-    const valid = /^[a-zA-ZáéíóúÁÉÍÓÚ\s]*$/.test(value);
-    return valid ? null : { invalidCharacters: true };
-  }
 
   searchDocuments(): void {
     if (this.searchForm.invalid) {

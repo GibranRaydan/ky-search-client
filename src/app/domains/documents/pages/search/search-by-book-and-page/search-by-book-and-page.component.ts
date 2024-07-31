@@ -38,13 +38,13 @@ export class SearchByBookAndPageComponent {
     book: new FormControl(null, [
       Validators.required,
       Validators.pattern('^[0-9]*$'),
-      Validators.min(1),
+      Validators.min(0),
       Validators.max(9999999999),
     ]),
     page: new FormControl(null, [
       Validators.required,
       Validators.pattern('^[0-9]*$'),
-      Validators.min(1),
+      Validators.min(0),
       Validators.max(9999999999),
     ]),
   });
